@@ -1,0 +1,199 @@
+{
+  "site": {
+    "title": "Alex Morgan Portfolio",
+    "adminPath": "/admin",
+    "storageKey": "portfolio-cms-data"
+  },
+  "admin": {
+    "password": "admin123",
+    "title": "Portfolio CMS",
+    "subtitle": "Edit projects, skills, experience, contact details, and profile content without touching source code.",
+    "hint": "Example password: admin123"
+  },
+  "navigation": [
+    { "label": "About", "href": "#about" },
+    { "label": "Skills", "href": "#skills" },
+    { "label": "Projects", "href": "#projects" },
+    { "label": "Experience", "href": "#experience" },
+    { "label": "Contact", "href": "#contact" }
+  ],
+  "personal": {
+    "name": "Alex Morgan",
+    "role": "Full Stack Developer",
+    "tagline": "I build polished web products with clean architecture, thoughtful UX, and reliable delivery.",
+    "about": "I am a product-minded developer focused on building fast, accessible, and maintainable applications. I enjoy turning ambiguous ideas into well-structured interfaces, scalable frontend systems, and practical admin workflows that teams can actually use.",
+    "location": "San Francisco, CA",
+    "availability": "Available for freelance and full-time roles",
+    "avatarUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80",
+    "resumeUrl": "/resume.pdf"
+  },
+  "sections": {
+    "about": {
+      "eyebrow": "Profile",
+      "title": "About Me",
+      "description": "A short overview of my work style, technical focus, and the value I bring to product teams."
+    },
+    "skills": {
+      "eyebrow": "Capabilities",
+      "title": "Skills",
+      "description": "Tools, languages, and practices I use to ship dependable digital products."
+    },
+    "projects": {
+      "eyebrow": "Selected Work",
+      "title": "Projects",
+      "description": "A few projects that show how I approach product problems, implementation, and polish."
+    },
+    "experience": {
+      "eyebrow": "Career",
+      "title": "Experience",
+      "description": "Recent roles and responsibilities across product engineering and frontend architecture."
+    },
+    "education": {
+      "eyebrow": "Background",
+      "title": "Education",
+      "description": "Academic foundations and continued learning."
+    },
+    "certifications": {
+      "eyebrow": "Proof",
+      "title": "Certifications",
+      "description": "Credentials and focused training."
+    },
+    "contact": {
+      "eyebrow": "Connect",
+      "title": "Contact",
+      "description": "Reach out for collaborations, roles, consulting, or product engineering work."
+    }
+  },
+  "stats": [
+    { "label": "Years Experience", "value": "6+" },
+    { "label": "Projects Delivered", "value": "42" },
+    { "label": "Core Stack", "value": "React" }
+  ],
+  "skills": [
+    {
+      "category": "Frontend",
+      "items": ["React", "TypeScript", "JavaScript", "Vite", "HTML", "CSS", "Accessibility"]
+    },
+    {
+      "category": "Backend",
+      "items": ["Node.js", "Express", "REST APIs", "PostgreSQL", "MongoDB", "Authentication"]
+    },
+    {
+      "category": "Workflow",
+      "items": ["Git", "Testing", "CI/CD", "Design Systems", "Performance", "Technical Writing"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "cms-portfolio",
+      "title": "Editable Portfolio CMS",
+      "subtitle": "A data-driven portfolio with an admin dashboard and local persistence.",
+      "description": "Built a React portfolio where all site content comes from JSON, while the admin dashboard lets non-developers manage projects, skills, experience, and contact data after deployment.",
+      "imageUrl": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
+      "tags": ["React", "Local Storage", "CMS", "Vite"],
+      "liveUrl": "https://example.com",
+      "repoUrl": "https://github.com/example/editable-portfolio",
+      "featured": true
+    },
+    {
+      "id": "analytics-dashboard",
+      "title": "Analytics Dashboard",
+      "subtitle": "A reporting interface for product and revenue teams.",
+      "description": "Designed and implemented a responsive analytics workspace with filterable charts, saved views, and exportable reports for operational decision-making.",
+      "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+      "tags": ["React", "Charts", "UX", "APIs"],
+      "liveUrl": "https://example.com",
+      "repoUrl": "https://github.com/example/analytics-dashboard",
+      "featured": true
+    },
+    {
+      "id": "booking-platform",
+      "title": "Booking Platform",
+      "subtitle": "A scheduling app for service businesses.",
+      "description": "Created booking flows, calendar availability, customer notifications, and admin tools for managing services, time slots, and staff schedules.",
+      "imageUrl": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80",
+      "tags": ["Node.js", "React", "PostgreSQL", "Automation"],
+      "liveUrl": "https://example.com",
+      "repoUrl": "https://github.com/example/booking-platform",
+      "featured": false
+    }
+  ],
+  "experience": [
+    {
+      "id": "senior-frontend-dev",
+      "company": "Northstar Labs",
+      "role": "Senior Frontend Developer",
+      "location": "Remote",
+      "startDate": "2023",
+      "endDate": "Present",
+      "summary": "Lead frontend delivery for customer-facing SaaS products, design systems, and internal CMS workflows.",
+      "highlights": [
+        "Improved application performance by refactoring data-loading patterns and reducing render overhead.",
+        "Built reusable component systems used across multiple product teams.",
+        "Partnered with design and product leads to turn ambiguous feature briefs into shipped workflows."
+      ]
+    },
+    {
+      "id": "fullstack-engineer",
+      "company": "BrightWorks Studio",
+      "role": "Full Stack Engineer",
+      "location": "Austin, TX",
+      "startDate": "2020",
+      "endDate": "2023",
+      "summary": "Delivered full-stack applications for ecommerce, scheduling, and operations clients.",
+      "highlights": [
+        "Created API integrations, authentication flows, and responsive dashboards.",
+        "Introduced automated testing practices for high-traffic client projects."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": "bs-computer-science",
+      "institution": "State University",
+      "degree": "B.S. Computer Science",
+      "period": "2016 - 2020",
+      "details": "Focused on software engineering, databases, human-computer interaction, and web systems."
+    }
+  ],
+  "certifications": [
+    {
+      "id": "aws-cloud-practitioner",
+      "name": "AWS Certified Cloud Practitioner",
+      "issuer": "Amazon Web Services",
+      "year": "2024",
+      "url": "https://aws.amazon.com/certification/"
+    },
+    {
+      "id": "frontend-accessibility",
+      "name": "Frontend Accessibility Specialist",
+      "issuer": "Professional Development Program",
+      "year": "2023",
+      "url": "https://example.com"
+    }
+  ],
+  "socialLinks": [
+    { "label": "GitHub", "url": "https://github.com/example", "type": "github" },
+    { "label": "LinkedIn", "url": "https://linkedin.com/in/example", "type": "linkedin" },
+    { "label": "X", "url": "https://x.com/example", "type": "twitter" }
+  ],
+  "contact": {
+    "email": "alex@example.com",
+    "phone": "+1 (555) 123-4567",
+    "location": "San Francisco, CA",
+    "preferred": "Email",
+    "message": "Send a note with a little context about the work, timeline, and goals.",
+    "form": {
+      "title": "Start a Conversation",
+      "recipientEmail": "balasaravanapriya2004@gmail.com",
+      "nameLabel": "Your Name",
+      "emailLabel": "Your Email",
+      "phoneLabel": "Contact Number",
+      "needLabel": "How can I be at your service?",
+      "goalsLabel": "What are your goals?",
+      "submitLabel": "Send Email",
+      "subjectPrefix": "Portfolio inquiry from",
+      "successMessage": "Your email app is ready with the message."
+    }
+  }
+}
