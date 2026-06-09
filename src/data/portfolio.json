@@ -8,14 +8,29 @@
     "password": "Bala@2004",
     "title": "Portfolio CMS",
     "subtitle": "Edit projects, skills, experience, contact details, and profile content without touching source code.",
-    "hint": "Example password: admin123"
+    "hint": ""
   },
   "navigation": [
-    { "label": "About", "href": "#about" },
-    { "label": "Skills", "href": "#skills" },
-    { "label": "Projects", "href": "#projects" },
-    { "label": "Experience", "href": "#experience" },
-    { "label": "Contact", "href": "#contact" }
+    {
+      "label": "About",
+      "href": "#about"
+    },
+    {
+      "label": "Skills",
+      "href": "#skills"
+    },
+    {
+      "label": "Projects",
+      "href": "#projects"
+    },
+    {
+      "label": "Experience",
+      "href": "#experience"
+    },
+    {
+      "label": "Contact",
+      "href": "#contact"
+    }
   ],
   "personal": {
     "name": "Bala S",
@@ -65,123 +80,154 @@
     }
   },
   "stats": [
-    { "label": "Years Experience", "value": "6+" },
-    { "label": "Projects Delivered", "value": "42" },
-    { "label": "Core Stack", "value": "React" }
+    {
+      "label": "Building practical solutions",
+      "value": "Fresher"
+    },
+    {
+      "label": "Front-End stack",
+      "value": "React"
+    },
+    {
+      "value": "C++",
+      "label": "DSA And Problem solving"
+    }
   ],
   "skills": [
     {
-      "category": "Frontend",
-      "items": ["React", "TypeScript", "JavaScript", "Vite", "HTML", "CSS", "Accessibility"]
+      "category": "Programming",
+      "items": [
+        "C++  Python  JavaScript  SQL"
+      ]
     },
     {
-      "category": "Backend",
-      "items": ["Node.js", "Express", "REST APIs", "PostgreSQL", "MongoDB", "Authentication"]
+      "category": "Web Development",
+      "items": [
+        "React           Flask         HTML          CSS        GitHub         PostgreSQL"
+      ]
     },
     {
-      "category": "Workflow",
-      "items": ["Git", "Testing", "CI/CD", "Design Systems", "Performance", "Technical Writing"]
+      "category": "AI & Machine Learning",
+      "items": [
+        "MachineLearning       TensorFlow       Keras      NLP    GenAI"
+      ]
+    },
+    {
+      "category": "Tools & Platforms",
+      "items": [
+        "VSCode      Codex   GoogleColab      Github"
+      ]
     }
   ],
   "projects": [
     {
-      "id": "cms-portfolio",
-      "title": "Editable Portfolio CMS",
-      "subtitle": "A data-driven portfolio with an admin dashboard and local persistence.",
-      "description": "Built a React portfolio where all site content comes from JSON, while the admin dashboard lets non-developers manage projects, skills, experience, and contact data after deployment.",
-      "imageUrl": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
-      "tags": ["React", "Local Storage", "CMS", "Vite"],
-      "liveUrl": "https://example.com",
-      "repoUrl": "https://github.com/example/editable-portfolio",
-      "featured": true
+      "id": "project-e6800a6d-8fd1-4de0-98e1-91552d90a0cb",
+      "title": "WatchUrRoad",
+      "subtitle": "Maintanence and INtreactvie Page for citizens and Goverment ",
+      "description": "Developed a Smart Civic Governance Platform that enables grievance management, budget transparency, public polling, and government scheme recommendations through a centralized web application. The system enhances citizen participation, improves transparency, and streamlines communication between citizens and government authorities.",
+      "imageUrl": "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80",
+      "tags": [
+        "React  Flask  LLms"
+      ],
+      "liveUrl": "IN Progress",
+      "repoUrl": "",
+      "featured": false
     },
     {
-      "id": "analytics-dashboard",
-      "title": "Analytics Dashboard",
-      "subtitle": "A reporting interface for product and revenue teams.",
-      "description": "Designed and implemented a responsive analytics workspace with filterable charts, saved views, and exportable reports for operational decision-making.",
-      "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
-      "tags": ["React", "Charts", "UX", "APIs"],
-      "liveUrl": "https://example.com",
-      "repoUrl": "https://github.com/example/analytics-dashboard",
-      "featured": true
+      "id": "project-07737ebb-0ac8-4b98-b45e-bd81779aa5b5",
+      "title": "AFCR",
+      "subtitle": "Automation IN Film Censorship",
+      "description": "\"Automated Film Censorship uses AI and Machine Learning to detect sensitive content, generate timestamps, recommend age ratings, and assist censor boards in making faster, more accurate, and consistent censorship decisions.\"",
+      "imageUrl": "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80",
+      "tags": [
+        "LLMs  ML"
+      ],
+      "liveUrl": "https://github.com/balas05/AFC",
+      "repoUrl": "https://github.com/balas05/AFC",
+      "featured": false
     },
     {
-      "id": "booking-platform",
-      "title": "Booking Platform",
-      "subtitle": "A scheduling app for service businesses.",
-      "description": "Created booking flows, calendar availability, customer notifications, and admin tools for managing services, time slots, and staff schedules.",
-      "imageUrl": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80",
-      "tags": ["Node.js", "React", "PostgreSQL", "Automation"],
-      "liveUrl": "https://example.com",
-      "repoUrl": "https://github.com/example/booking-platform",
+      "id": "project-068c4567-ba7b-4b0f-b1d7-8030586e3f1b",
+      "title": "Portfolio with CMS",
+      "subtitle": "Editable Portfolio",
+      "description": "A modern React-based portfolio website with an integrated CMS dashboard that allows dynamic management of projects, skills, experience, and contact information. Built using React, Vite, JavaScript, and responsive design principles to showcase my AI/ML and software development journey.",
+      "imageUrl": "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80",
+      "tags": [
+        "React"
+      ],
+      "liveUrl": "https://balas05.github.io/Portfolio/",
+      "repoUrl": "https://github.com/balas05/Portfolio",
       "featured": false
     }
   ],
   "experience": [
     {
-      "id": "senior-frontend-dev",
-      "company": "Northstar Labs",
-      "role": "Senior Frontend Developer",
-      "location": "Remote",
-      "startDate": "2023",
-      "endDate": "Present",
-      "summary": "Lead frontend delivery for customer-facing SaaS products, design systems, and internal CMS workflows.",
+      "id": "experience-e3638ad0-835c-4bb4-8899-f1c1fd551443",
+      "company": "SRMIST IN-HOUSE",
+      "role": "Team Lead",
+      "location": "SRMIST",
+      "startDate": "2024",
+      "endDate": "2025",
+      "summary": "Content Detection\nAutomatically identifies inappropriate content such as:\nViolence\nBlood/Gore\nNudity\nProfanity\nHate Speech\nDrug/Alcohol Usage\nTimestamp Generation\nDetects the exact time in the movie where objectionable content appears.\nHelps reviewers quickly locate scenes instead of watching the entire film.\nContent Classification\nCategorizes detected content into different severity levels (Low, Medium, High).\nAssists in assigning age ratings.\nAutomated Rating Recommendation\nSuggests suitable film ratings based on detected content.\nExample:\nU (Universal)\nU/A 13+\nU/A 16+\nA (Adults Only)\nContent Filtering and Editing Support\nMarks scenes that may require muting, blurring, or removal.\nGenerates reports for editors and censorship boards.\nReport Generation\nCreates detailed summaries containing:\nType of violation\nNumber of occurrences\nSeverity level\nTimestamps\nConsistency in Evaluation\nApplies the same standards across all films.\nReduces human bias and subjective judgment",
       "highlights": [
-        "Improved application performance by refactoring data-loading patterns and reducing render overhead.",
-        "Built reusable component systems used across multiple product teams.",
-        "Partnered with design and product leads to turn ambiguous feature briefs into shipped workflows."
-      ]
-    },
-    {
-      "id": "fullstack-engineer",
-      "company": "BrightWorks Studio",
-      "role": "Full Stack Engineer",
-      "location": "Austin, TX",
-      "startDate": "2020",
-      "endDate": "2023",
-      "summary": "Delivered full-stack applications for ecommerce, scheduling, and operations clients.",
-      "highlights": [
-        "Created API integrations, authentication flows, and responsive dashboards.",
-        "Introduced automated testing practices for high-traffic client projects."
+        "Key Highlights",
+        "✅ Reduces manual review time significantly.",
+        "✅ Improves accuracy in identifying sensitive content.",
+        "✅ Provides precise timestamps for faster inspection.",
+        "✅ Supports automatic film rating recommendations.",
+        "✅ Ensures consistent censorship decisions.",
+        "✅ Scalable for processing large volumes of movies and videos.",
+        "✅ Assists censor boards rather than replacing human reviewers."
       ]
     }
   ],
   "education": [
     {
-      "id": "bs-computer-science",
-      "institution": "State University",
-      "degree": "B.S. Computer Science",
-      "period": "2016 - 2020",
-      "details": "Focused on software engineering, databases, human-computer interaction, and web systems."
+      "id": "education-13c43d37-21ea-4533-94cd-3f8dd3de8d64",
+      "institution": "SRMIST",
+      "degree": "Btech.AI",
+      "period": "2021-2025",
+      "details": "During my B.Tech in Artificial Intelligence, I developed a strong foundation in AI/ML algorithms, Deep Learning, Computer Vision, NLP, Data Analytics, Database Management Systems, and Software Engineering. I gained hands-on experience by building projects that involved predictive modeling, image classification, automation, and intelligent decision-making systems."
     }
   ],
   "certifications": [
     {
-      "id": "aws-cloud-practitioner",
-      "name": "AWS Certified Cloud Practitioner",
-      "issuer": "Amazon Web Services",
-      "year": "2024",
-      "url": "https://aws.amazon.com/certification/"
+      "id": "certification-52525635-e5a4-43fb-a7c8-f4377bd4a668",
+      "name": "AWS Academy Graduate - AWS Academy Cloud Foundations",
+      "issuer": "Amazon Web Services (AWS)",
+      "year": "2023",
+      "url": "https://www.credly.com/badges/5f0e5625-d602-454e-a8cb-0a9d56edf43b/linked_in_profile"
     },
     {
-      "id": "frontend-accessibility",
-      "name": "Frontend Accessibility Specialist",
-      "issuer": "Professional Development Program",
+      "id": "certification-f263cd7b-dd55-44a7-94dd-46342a072947",
+      "name": "AWS Academy Graduate - AWS Academy Machine Learning Foundations",
+      "issuer": "Amazon Web Services (AWS)",
       "year": "2023",
-      "url": "https://example.com"
+      "url": "https://www.credly.com/badges/3e2f071e-1d66-4ca4-8b3e-814dd7fd7289/linked_in_profile"
     }
   ],
   "socialLinks": [
-    { "label": "GitHub", "url": "https://github.com/example", "type": "github" },
-    { "label": "LinkedIn", "url": "https://linkedin.com/in/example", "type": "linkedin" },
-    { "label": "X", "url": "https://x.com/example", "type": "twitter" }
+    {
+      "label": "GitHub",
+      "url": "https://github.com/balas05",
+      "type": "github"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/bala-s-878b06216/",
+      "type": "linkedin"
+    },
+    {
+      "label": "Leetcode",
+      "url": "https://leetcode.com/u/bala_05s/",
+      "type": "Leetcode"
+    }
   ],
   "contact": {
-    "email": "alex@example.com",
-    "phone": "+1 (555) 123-4567",
-    "location": "San Francisco, CA",
-    "preferred": "Email",
+    "email": "balasaravanapriya2004@gmail.com",
+    "phone": "7010253537",
+    "location": "TamilNadu,India",
+    "preferred": "",
     "message": "Send a note with a little context about the work, timeline, and goals.",
     "form": {
       "title": "Start a Conversation",
