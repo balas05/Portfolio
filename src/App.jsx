@@ -8,7 +8,13 @@ const themeStorageKey = "portfolio-theme";
 function currentView(adminPath) {
   const path = window.location.pathname;
   const hash = window.location.hash;
-  return path === adminPath || hash === "#admin" ? "admin" : "portfolio";
+
+  return (
+    path.includes(adminPath) ||
+    hash === "#admin"
+  )
+    ? "admin"
+    : "portfolio";
 }
 
 function preferredTheme() {

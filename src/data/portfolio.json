@@ -1,11 +1,11 @@
 {
   "site": {
-    "title": "Alex Morgan Portfolio",
-    "adminPath": "/admin",
+    "title": "Bala S",
+    "adminPath": "#admin",
     "storageKey": "portfolio-cms-data"
   },
   "admin": {
-    "password": "admin123",
+    "password": "Bala@2004",
     "title": "Portfolio CMS",
     "subtitle": "Edit projects, skills, experience, contact details, and profile content without touching source code.",
     "hint": "Example password: admin123"
@@ -18,14 +18,14 @@
     { "label": "Contact", "href": "#contact" }
   ],
   "personal": {
-    "name": "Alex Morgan",
+    "name": "Bala S",
     "role": "Full Stack Developer",
     "tagline": "I build polished web products with clean architecture, thoughtful UX, and reliable delivery.",
     "about": "I am a product-minded developer focused on building fast, accessible, and maintainable applications. I enjoy turning ambiguous ideas into well-structured interfaces, scalable frontend systems, and practical admin workflows that teams can actually use.",
     "location": "San Francisco, CA",
     "availability": "Available for freelance and full-time roles",
-    "avatarUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80",
-    "resumeUrl": "/resume.pdf"
+    "avatarUrl": "https://media.licdn.com/dms/image/v2/D5635AQHS3PumDqpaEg/profile-framedphoto-shrink_400_400/B56Z6r.Y3oJwAY-/0/1781001719858?e=1781607600&v=beta&t=TwPCtrsie2rCzVOgDEDzhZmJjt95oDERHzhh67tsj8M",
+    "resumeUrl": "https://drive.google.com/file/d/1OEwuLDcP4at9ZFnyYI9QA0pdXSikEJiC/view?usp=drive_link"
   },
   "sections": {
     "about": {
