@@ -1777,3 +1777,31 @@ a,
   width: 20px !important;
   height: 20px !important;
 }
+
+/* Radar Icon Node */
+.radar-icon-node {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  background: color-mix(in srgb, var(--paper) 80%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  cursor: help;
+  position: relative;
+}
+
+.radar-icon-node:hover {
+  transform: scale(1.4);
+  z-index: 10;
+  border-color: var(--teal);
+  box-shadow: 0 4px 12px rgba(29, 111, 115, 0.25);
+}
+
+.radar-icon-node .skill-logo,
+.radar-icon-node .skill-icon-fallback {
+  width: 16px !important;
+  height: 16px !important;
+}

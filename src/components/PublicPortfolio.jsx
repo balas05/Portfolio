@@ -320,65 +320,71 @@ function About({ data }) {
 }
 
 function Skills({ data }) {
-  const radarData = [
-    { subject: 'AI / ML', A: 95, fullMark: 100 },
-    { subject: 'Frontend', A: 85, fullMark: 100 },
-    { subject: 'Backend', A: 80, fullMark: 100 },
-    { subject: 'DSA', A: 90, fullMark: 100 },
-    { subject: 'Databases', A: 85, fullMark: 100 },
-    { subject: 'Cloud', A: 75, fullMark: 100 },
-  ];
+  const maxItems = Math.max(...data.skills.map(g => g.items.length));
+  
+  const radarData = data.skills.map((group) => {
+    const row = { category: group.category, maxVal: 100 };
+    const startVal = 25;
+    const endVal = 95;
+    const step = group.items.length > 1 ? (endVal - startVal) / (group.items.length - 1) : 0;
+    
+    group.items.forEach((item, index) => {
+      row[`layer${index}`] = { name: item, val: group.items.length === 1 ? 60 : startVal + (step * index) };
+    });
+    return row;
+  });
+
+  const layers = Array.from({ length: maxItems }, (_, i) => `layer${i}`);
 
   return (
     <section id="skills" className="section tinted">
       <SectionHeader section={data.sections.skills} />
-      <div className="bento-skill-grid">
-        <article className="bento-skill-card radar-card">
-          <div className="bento-card-header" style={{ borderBottom: 'none', textAlign: 'center' }}>
-            <h3 style={{ color: 'var(--muted)', fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '2px' }}>Technical Distribution</h3>
-          </div>
-          <div style={{ width: '100%', height: 350, marginTop: '-10px' }}>
+      <div style={{ width: '100%', maxWidth: '900px', margin: '0 auto', display: 'flex', justifyContent: 'center' }}>
+        <article className="radar-card" style={{ width: '100%', border: 'none', background: 'transparent', boxShadow: 'none' }}>
+          <div style={{ width: '100%', height: 600 }}>
             <ResponsiveContainer width="100%" height="100%">
-              <RadarChart cx="50%" cy="50%" outerRadius="70%" data={radarData}>
+              <RadarChart cx="50%" cy="50%" outerRadius="75%" data={radarData}>
                 <defs>
                   <linearGradient id="colorRadar" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="var(--teal)" stopOpacity={0.6}/>
-                    <stop offset="95%" stopColor="var(--teal)" stopOpacity={0.05}/>
+                    <stop offset="5%" stopColor="var(--teal)" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="var(--teal)" stopOpacity={0.02}/>
                   </linearGradient>
                 </defs>
-                <PolarGrid stroke="var(--line)" gridType="circle" strokeDasharray="4 4" />
-                <PolarAngleAxis dataKey="subject" tick={{ fill: 'var(--ink)', fontSize: 13, fontWeight: 600 }} />
+                <PolarGrid stroke="var(--line)" gridType="polygon" strokeDasharray="4 4" />
+                <PolarAngleAxis dataKey="category" tick={{ fill: 'var(--charcoal)', fontSize: 14, fontWeight: 800, textTransform: 'uppercase' }} />
                 <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
-                <Radar 
-                  name="Skills" 
-                  dataKey="A" 
-                  stroke="var(--teal)" 
-                  strokeWidth={2}
-                  fill="url(#colorRadar)" 
-                  fillOpacity={1} 
-                  dot={{ r: 3, fill: "var(--teal)", stroke: "var(--surface)", strokeWidth: 1 }}
-                  activeDot={{ r: 6, fill: "var(--teal)", stroke: "var(--surface)", strokeWidth: 2 }}
-                  animationDuration={2000}
-                />
+                
+                <Radar name="Background" dataKey="maxVal" stroke="var(--teal)" strokeWidth={2} fill="url(#colorRadar)" fillOpacity={1} dot={false} isAnimationActive={false} />
+                
+                {layers.map((layerKey) => (
+                  <Radar 
+                    key={layerKey} 
+                    dataKey={`${layerKey}.val`} 
+                    stroke="none" 
+                    fill="none" 
+                    dot={(props) => {
+                      const { cx, cy, payload } = props;
+                      const itemData = payload[layerKey];
+                      if (!itemData) return null;
+                      const skillName = itemData.name;
+                      return (
+                        <foreignObject key={skillName} x={cx - 20} y={cy - 20} width={40} height={40} style={{ overflow: 'visible' }}>
+                          <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <div className="radar-icon-node" title={skillName}>
+                              {getSkillIcon(skillName)}
+                            </div>
+                          </div>
+                        </foreignObject>
+                      );
+                    }} 
+                    isAnimationActive={true}
+                    animationDuration={2000}
+                  />
+                ))}
               </RadarChart>
             </ResponsiveContainer>
           </div>
         </article>
-        {data.skills.map((group) => (
-          <article className="bento-skill-card" key={group.category}>
-            <div className="bento-card-header">
-              <h3>{group.category}</h3>
-            </div>
-            <div className="bento-skill-items">
-              {group.items.map((skill) => (
-                <div className="iconic-skill-pill" key={skill}>
-                  {getSkillIcon(skill)}
-                  <span>{skill}</span>
-                </div>
-              ))}
-            </div>
-          </article>
-        ))}
       </div>
     </section>
   );
