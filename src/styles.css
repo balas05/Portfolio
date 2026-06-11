@@ -1732,15 +1732,91 @@ a,
   white-space: pre-wrap;
 }
 
-/* Radar Card */
-.radar-card {
-  align-items: center;
-  justify-content: center;
-  grid-column: 1 / -1;
+/* Infinite Marquee Skills */
+.marquee-container {
+  overflow: hidden;
   width: 100%;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
+  padding: 40px 0;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-row {
+  display: flex;
+  width: max-content;
+}
+
+.marquee-content {
+  display: flex;
+  gap: 30px;
+  padding-right: 30px; /* matches gap to ensure smooth looping */
+}
+
+.marquee-left .marquee-content {
+  animation: scroll-left 40s linear infinite;
+}
+
+.marquee-right .marquee-content {
+  animation: scroll-right 40s linear infinite;
+}
+
+.marquee-row:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-25%); } /* Since we duplicated 4 times, moving 1/4th loops it perfectly */
+}
+
+@keyframes scroll-right {
+  0% { transform: translateX(-25%); }
+  100% { transform: translateX(0); }
+}
+
+.marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  border: 1px solid var(--line);
+  padding: 12px 28px 12px 14px;
+  border-radius: 999px;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  cursor: default;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.marquee-item:hover {
+  transform: translateY(-4px);
+  border-color: var(--teal);
+  box-shadow: 0 8px 24px rgba(29, 111, 115, 0.15);
+  background: var(--surface);
+}
+
+.marquee-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  background: color-mix(in srgb, var(--paper) 60%, transparent);
+  border-radius: 50%;
+  border: 1px solid var(--line);
+}
+
+.marquee-icon .skill-logo,
+.marquee-icon .skill-icon-fallback {
+  width: 24px !important;
+  height: 24px !important;
+  object-fit: contain;
+}
+
+.marquee-label {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--charcoal);
+  white-space: nowrap;
 }
 
 /* Project Tech Icons */
@@ -1776,32 +1852,4 @@ a,
 .project-tech-icon .skill-icon-fallback {
   width: 20px !important;
   height: 20px !important;
-}
-
-/* Radar Icon Node */
-.radar-icon-node {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 32px;
-  height: 32px;
-  background: color-mix(in srgb, var(--paper) 80%, transparent);
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-  cursor: help;
-  position: relative;
-}
-
-.radar-icon-node:hover {
-  transform: scale(1.4);
-  z-index: 10;
-  border-color: var(--teal);
-  box-shadow: 0 4px 12px rgba(29, 111, 115, 0.25);
-}
-
-.radar-icon-node .skill-logo,
-.radar-icon-node .skill-icon-fallback {
-  width: 16px !important;
-  height: 16px !important;
 }
