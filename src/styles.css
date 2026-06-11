@@ -350,9 +350,11 @@ a,
 .hero-skill-strip span {
   display: inline-block;
   white-space: nowrap;
+  margin: 0 8px 8px 0; /* Fallback for older browsers without flex gap */
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.7); /* Fallback */
   background: color-mix(in srgb, var(--surface) 88%, transparent);
   color: var(--muted);
   font-family: var(--font-mono);
@@ -703,6 +705,7 @@ a,
 .skill-pill {
   display: inline-block;
   white-space: nowrap;
+  margin: 0 8px 8px 0; /* Fallback for older browsers without flex gap */
   border-radius: 999px;
   padding: 8px 14px;
   background: #1e3a8a; /* A rich darker blue */
