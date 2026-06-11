@@ -337,9 +337,9 @@ function Skills({ data }) {
           <div className="bento-card-header">
             <h3>Technical Distribution</h3>
           </div>
-          <div style={{ width: '100%', height: 280, marginTop: '-20px' }}>
+          <div style={{ width: '100%', height: 350, marginTop: '-20px' }}>
             <ResponsiveContainer width="100%" height="100%">
-              <RadarChart cx="50%" cy="50%" outerRadius="65%" data={radarData}>
+              <RadarChart cx="50%" cy="50%" outerRadius="75%" data={radarData}>
                 <PolarGrid stroke="var(--line)" />
                 <PolarAngleAxis dataKey="subject" tick={{ fill: 'var(--charcoal)', fontSize: 12, fontWeight: 600 }} />
                 <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
