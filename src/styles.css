@@ -688,7 +688,6 @@ a,
   margin-top: 18px;
 }
 
-.skill-card span,
 .tags span {
   border-radius: 999px;
   padding: 7px 10px;
@@ -696,6 +695,16 @@ a,
   color: var(--tag-ink);
   font-size: 0.86rem;
   font-weight: 700;
+}
+
+.skill-card span {
+  border-radius: 999px;
+  padding: 8px 14px;
+  background: #1e3a8a; /* A rich darker blue */
+  color: #ffffff;
+  font-size: 0.86rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);
 }
 
 .project-card {
