@@ -108,19 +108,12 @@ function MosaicPortrait({ data }) {
 }
 
 function Hero({ data }) {
-  const featuredSkills = data.skills.flatMap((group) => group.items).slice(0, 5);
-
   return (
     <section className="hero" id="top">
       <div className="hero-copy">
         <p className="eyebrow">{data.personal.role}</p>
         <MosaicName name={data.personal.name} />
         <p className="tagline">{data.personal.tagline}</p>
-        <div className="hero-skill-strip" aria-label="Featured skills">
-          {featuredSkills.map((skill) => (
-            <span key={skill}>{skill}</span>
-          ))}
-        </div>
         <div className="hero-actions">
           <a className="button primary" href="#projects">
             <Sparkles size={18} />

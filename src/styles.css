@@ -188,12 +188,29 @@ a,
 .site-header nav {
   display: flex;
   justify-content: center;
-  gap: clamp(12px, 2vw, 24px);
-  color: var(--muted);
+  gap: clamp(8px, 1vw, 16px);
   font-size: 0.95rem;
 }
 
-.site-header nav a:hover,
+.site-header nav a {
+  padding: 8px 18px;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.site-header nav a:hover {
+  background: var(--teal);
+  color: white;
+  border-color: var(--teal);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(15, 127, 120, 0.25);
+}
+
 .admin-entry:hover,
 .theme-toggle:hover {
   color: var(--teal);
