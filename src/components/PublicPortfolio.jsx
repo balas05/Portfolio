@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   ArrowUpRight,
   Award,
@@ -136,13 +136,61 @@ function MosaicPortrait({ data }) {
   );
 }
 
+function useTypewriter(words, typingSpeed = 70, deletingSpeed = 40, pauseTime = 2000) {
+  const [text, setText] = useState("");
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentWord = words[wordIndex];
+    let timer;
+
+    if (isDeleting) {
+      timer = setTimeout(() => {
+        setText(currentWord.substring(0, text.length - 1));
+        if (text.length === 0) {
+          setIsDeleting(false);
+          setWordIndex((prev) => (prev + 1) % words.length);
+        }
+      }, deletingSpeed);
+    } else {
+      timer = setTimeout(() => {
+        setText(currentWord.substring(0, text.length + 1));
+        if (text.length === currentWord.length) {
+          timer = setTimeout(() => setIsDeleting(true), pauseTime);
+        }
+      }, typingSpeed);
+    }
+
+    return () => clearTimeout(timer);
+  }, [text, isDeleting, wordIndex, words, typingSpeed, deletingSpeed, pauseTime]);
+
+  return text;
+}
+
 function Hero({ data }) {
+  const roles = [data.personal.role, "AI & Machine Learning Enthusiast", "Problem Solver"];
+  const currentRole = useTypewriter(roles);
+
   return (
     <section className="hero" id="top">
       <div className="hero-copy">
-        <p className="eyebrow">{data.personal.role}</p>
+        <div className="status-badge">
+          <span className="status-dot"></span>
+          Available for new roles
+        </div>
+        <p className="eyebrow typewriter-text">
+          {currentRole}<span className="typewriter-cursor">|</span>
+        </p>
         <MosaicName name={data.personal.name} />
         <p className="tagline">{data.personal.tagline}</p>
+        
+        <div className="quick-stats-row">
+          <div className="quick-stat"><GraduationCap size={16} /> B.Tech AI</div>
+          <div className="quick-stat"><Terminal size={16} /> Full Stack Dev</div>
+          <div className="quick-stat"><Github size={16} /> Open Source</div>
+        </div>
+
         <div className="hero-actions">
           <a className="button primary" href="#projects">
             <Sparkles size={18} />
