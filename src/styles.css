@@ -1541,3 +1541,123 @@ a,
 .quick-stat svg {
   color: var(--teal);
 }
+
+/* LeetCode Widget */
+.about-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.leetcode-widget {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  animation: fade-up 0.52s ease both;
+}
+
+.leetcode-widget.skeleton {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.lc-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.lc-logo {
+  width: 24px;
+  height: 24px;
+  color: #ffa116; /* LeetCode orange */
+}
+
+.lc-header h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--charcoal);
+  flex: 1;
+}
+
+.lc-rank {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--muted);
+  background: var(--tag-bg);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.lc-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.lc-stat {
+  display: flex;
+  flex-direction: column;
+  background: color-mix(in srgb, var(--paper) 60%, transparent);
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.lc-stat span {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.lc-stat strong {
+  font-size: 1.2rem;
+  color: var(--charcoal);
+}
+
+.lc-stat strong span {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.lc-easy strong { color: #00b8a3; }
+.lc-medium strong { color: #ffc01e; }
+.lc-hard strong { color: #ff375f; }
+
+.lc-progress-bar {
+  display: flex;
+  height: 6px;
+  background: var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.lc-progress {
+  height: 100%;
+}
+
+.lc-progress.easy { background: #00b8a3; }
+.lc-progress.medium { background: #ffc01e; }
+.lc-progress.hard { background: #ff375f; }
+
+.lc-total {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+}
+.lc-total strong {
+  color: var(--charcoal);
+}
