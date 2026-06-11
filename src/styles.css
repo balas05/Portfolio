@@ -1747,11 +1747,18 @@ a,
 
 .marquee-row {
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   width: max-content;
+  width: -webkit-max-content;
+  width: -moz-max-content;
 }
 
 .marquee-content {
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
   gap: 30px;
   padding-right: 30px; /* matches gap to ensure smooth looping */
 }
@@ -1780,7 +1787,10 @@ a,
 
 .marquee-item {
   display: flex;
+  flex-direction: row;
   align-items: center;
+  flex-shrink: 0;
+  white-space: nowrap;
   gap: 16px;
   background: color-mix(in srgb, var(--surface) 90%, transparent);
   border: 1px solid var(--line);
