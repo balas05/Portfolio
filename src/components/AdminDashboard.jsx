@@ -417,6 +417,7 @@ export default function AdminDashboard({ portfolio, savePortfolio, resetPortfoli
               <TextInput label="Location" value={draft.contact.location} onChange={(value) => updateField(["contact", "location"], value)} />
               <TextInput label="Preferred channel" value={draft.contact.preferred} onChange={(value) => updateField(["contact", "preferred"], value)} />
               <TextArea label="Contact message" value={draft.contact.message} onChange={(value) => updateField(["contact", "message"], value)} />
+              <TextInput label="Web3Forms Access Key" type="password" value={draft.contact.form.web3FormsKey} onChange={(value) => updateField(["contact", "form", "web3FormsKey"], value)} />
               <TextInput label="Form title" value={draft.contact.form.title} onChange={(value) => updateField(["contact", "form", "title"], value)} />
               <TextInput label="Form recipient email" value={draft.contact.form.recipientEmail} onChange={(value) => updateField(["contact", "form", "recipientEmail"], value)} />
               <TextInput label="Name label" value={draft.contact.form.nameLabel} onChange={(value) => updateField(["contact", "form", "nameLabel"], value)} />

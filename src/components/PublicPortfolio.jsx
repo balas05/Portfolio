@@ -281,6 +281,7 @@ function EducationAndCertifications({ data }) {
 function Contact({ data }) {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", need: "", goals: "" });
   const [formStatus, setFormStatus] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const form = data.contact.form;
 
   const updateForm = (field, value) => {
@@ -288,20 +289,51 @@ function Contact({ data }) {
     setFormStatus("");
   };
 
-  const submitForm = (event) => {
+  const submitForm = async (event) => {
     event.preventDefault();
-    const subject = `${form.subjectPrefix} ${formData.name}`;
-    const body = [
-      `${form.nameLabel}: ${formData.name}`,
-      `${form.emailLabel}: ${formData.email}`,
-      `${form.phoneLabel}: ${formData.phone}`,
-      `${form.needLabel}: ${formData.need}`,
-      `${form.goalsLabel}:`,
-      formData.goals,
-    ].join("\n\n");
-    const recipientEmail = form.recipientEmail || data.contact.email;
-    window.location.href = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setFormStatus(form.successMessage);
+    setIsSubmitting(true);
+    setFormStatus("Sending...");
+
+    const accessKey = form.web3FormsKey;
+
+    if (!accessKey) {
+        setFormStatus("Configuration Error: Web3Forms Access Key is missing.");
+        setIsSubmitting(false);
+        return;
+    }
+
+    const payload = {
+        access_key: accessKey,
+        subject: `${form.subjectPrefix} ${formData.name}`,
+        from_name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        need: formData.need,
+        message: formData.goals,
+    };
+
+    try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+            },
+            body: JSON.stringify(payload),
+        });
+        const result = await response.json();
+        
+        if (result.success) {
+            setFormStatus(form.successMessage || "Message sent successfully!");
+            setFormData({ name: "", email: "", phone: "", need: "", goals: "" });
+        } else {
+            setFormStatus(result.message || "Something went wrong.");
+        }
+    } catch (error) {
+        setFormStatus("Failed to send message. Please try again later.");
+    }
+    
+    setIsSubmitting(false);
   };
 
   return (
@@ -370,9 +402,9 @@ function Contact({ data }) {
               onChange={(event) => updateForm("goals", event.target.value)}
             />
           </label>
-          <button className="button primary" type="submit">
+          <button className="button primary" type="submit" disabled={isSubmitting}>
             <Mail size={18} />
-            {form.submitLabel}
+            {isSubmitting ? "Sending..." : form.submitLabel}
           </button>
           {formStatus ? <p className="contact-form-status">{formStatus}</p> : null}
         </form>
