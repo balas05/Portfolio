@@ -18,7 +18,10 @@ import {
   Terminal,
   BrainCircuit,
   Database,
-  Box,
+  FileText,
+  FileJson,
+  FileCode,
+  FolderClosed,
 } from "lucide-react";
 
 const getSkillIcon = (skillName) => {
@@ -91,18 +94,10 @@ function Header({ data, theme, onToggleTheme }) {
   );
 }
 
-function MosaicName({ name }) {
+function ShimmeringName({ name }) {
   return (
-    <h1 className="mosaic-name" aria-label={name}>
-      {name.split("").map((char, index) =>
-        char === " " ? (
-          <span className="mosaic-space" aria-hidden="true" key={`${char}-${index}`} />
-        ) : (
-          <span aria-hidden="true" key={`${char}-${index}`} style={{ "--tile-index": index }}>
-            {char}
-          </span>
-        ),
-      )}
+    <h1 className="shimmering-name" aria-label={name}>
+      {name}
     </h1>
   );
 }
@@ -182,7 +177,7 @@ function Hero({ data }) {
         <p className="eyebrow typewriter-text">
           {currentRole}<span className="typewriter-cursor">|</span>
         </p>
-        <MosaicName name={data.personal.name} />
+        <ShimmeringName name={data.personal.name} />
         <p className="tagline">{data.personal.tagline}</p>
         
         <div className="quick-stats-row">
@@ -524,59 +519,77 @@ function Contact({ data }) {
     <section id="contact" className="section contact-section">
       <SectionHeader section={data.sections.contact} />
       <div className="contact-grid">
-        <div className="contact-card">
-          <p>{data.contact.message}</p>
-          <a href={`mailto:${data.contact.email}`}>
-            <Mail size={18} />
-            {data.contact.email}
-          </a>
-          <a href={`tel:${data.contact.phone}`}>
-            <Phone size={18} />
-            {data.contact.phone}
-          </a>
-          <span>
-            <MapPin size={18} />
-            {data.contact.location}
-          </span>
+        <div className="contact-info-column">
+          <div className="contact-card">
+            <p>{data.contact.message}</p>
+            <a href={`mailto:${data.contact.email}`}>
+              <Mail size={18} />
+              {data.contact.email}
+            </a>
+            <a href={`tel:${data.contact.phone}`}>
+              <Phone size={18} />
+              {data.contact.phone}
+            </a>
+            <span>
+              <MapPin size={18} />
+              {data.contact.location}
+            </span>
+          </div>
+          <div className="social-grid">
+            {data.socialLinks.map((link) => {
+              const Icon = socialIcons[link.type] || Send;
+              return (
+                <a key={link.url} href={link.url}>
+                  <Icon size={20} />
+                  <span>{link.label}</span>
+                  <ArrowUpRight size={16} />
+                </a>
+              );
+            })}
+          </div>
         </div>
         <form className="contact-form-card" onSubmit={submitForm}>
           <h3>{form.title}</h3>
-          <label>
-            <span>{form.nameLabel}</span>
-            <input
-              required
-              type="text"
-              value={formData.name}
-              onChange={(event) => updateForm("name", event.target.value)}
-            />
-          </label>
-          <label>
-            <span>{form.emailLabel}</span>
-            <input
-              required
-              type="email"
-              value={formData.email}
-              onChange={(event) => updateForm("email", event.target.value)}
-            />
-          </label>
-          <label>
-            <span>{form.phoneLabel}</span>
-            <input
-              required
-              type="tel"
-              value={formData.phone}
-              onChange={(event) => updateForm("phone", event.target.value)}
-            />
-          </label>
-          <label>
-            <span>{form.needLabel}</span>
-            <input
-              required
-              type="text"
-              value={formData.need}
-              onChange={(event) => updateForm("need", event.target.value)}
-            />
-          </label>
+          <div className="form-row">
+            <label>
+              <span>{form.nameLabel}</span>
+              <input
+                required
+                type="text"
+                value={formData.name}
+                onChange={(event) => updateForm("name", event.target.value)}
+              />
+            </label>
+            <label>
+              <span>{form.emailLabel}</span>
+              <input
+                required
+                type="email"
+                value={formData.email}
+                onChange={(event) => updateForm("email", event.target.value)}
+              />
+            </label>
+          </div>
+          <div className="form-row">
+            <label>
+              <span>{form.phoneLabel}</span>
+              <input
+                required
+                type="tel"
+                value={formData.phone}
+                onChange={(event) => updateForm("phone", event.target.value)}
+              />
+            </label>
+            <label>
+              <span>{form.needLabel}</span>
+              <input
+                required
+                type="text"
+                value={formData.need}
+                onChange={(event) => updateForm("need", event.target.value)}
+              />
+            </label>
+          </div>
           <label>
             <span>{form.goalsLabel}</span>
             <textarea
@@ -592,18 +605,6 @@ function Contact({ data }) {
           </button>
           {formStatus ? <p className="contact-form-status">{formStatus}</p> : null}
         </form>
-        <div className="social-grid">
-          {data.socialLinks.map((link) => {
-            const Icon = socialIcons[link.type] || Send;
-            return (
-              <a key={link.url} href={link.url}>
-                <Icon size={20} />
-                <span>{link.label}</span>
-                <ArrowUpRight size={16} />
-              </a>
-            );
-          })}
-        </div>
       </div>
     </section>
   );
@@ -617,11 +618,48 @@ export default function PublicPortfolio({ data, theme, onToggleTheme }) {
         <Hero data={data} />
         <About data={data} />
         <Skills data={data} />
-        <Projects data={data} />
-        <Experience data={data} />
-        <EducationAndCertifications data={data} />
+        <UnifiedDashboard data={data} />
         <Contact data={data} />
       </main>
     </div>
+  );
+}
+
+function UnifiedDashboard({ data }) {
+  const [activeTab, setActiveTab] = useState("projects");
+
+  return (
+    <section id="portfolio-dashboard" className="section tinted">
+      <div className="dashboard-container">
+        <div className="dashboard-tabs-wrapper">
+          <div className="dashboard-tabs">
+            <button 
+              className={`dashboard-tab ${activeTab === 'projects' ? 'active' : ''}`}
+              onClick={() => setActiveTab('projects')}
+            >
+              <FolderClosed size={18} /> Projects
+            </button>
+            <button 
+              className={`dashboard-tab ${activeTab === 'experience' ? 'active' : ''}`}
+              onClick={() => setActiveTab('experience')}
+            >
+              <BriefcaseBusiness size={18} /> Experience
+            </button>
+            <button 
+              className={`dashboard-tab ${activeTab === 'education' ? 'active' : ''}`}
+              onClick={() => setActiveTab('education')}
+            >
+              <GraduationCap size={18} /> Education & Certs
+            </button>
+          </div>
+        </div>
+        
+        <div className="dashboard-content">
+          {activeTab === 'projects' && <div className="tab-pane fade-in"><Projects data={data} /></div>}
+          {activeTab === 'experience' && <div className="tab-pane fade-in"><Experience data={data} /></div>}
+          {activeTab === 'education' && <div className="tab-pane fade-in"><EducationAndCertifications data={data} /></div>}
+        </div>
+      </div>
+    </section>
   );
 }
