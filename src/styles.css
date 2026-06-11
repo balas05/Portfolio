@@ -1929,3 +1929,35 @@ a,
 .tab-pane {
   animation: fade-up 0.4s ease both;
 }
+
+/* Mobile Fixes for Dashboard and Terminal */
+@media (max-width: 768px) {
+  .dashboard-tabs {
+    padding: 4px;
+    gap: 4px;
+  }
+  
+  .dashboard-tab {
+    padding: 8px 4px;
+    font-size: 0.8rem;
+    gap: 6px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .dashboard-tab svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .terminal-title {
+    position: static;
+    transform: none;
+    margin-left: 12px;
+    font-size: 0.75rem;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
