@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from "recharts";
 import {
   ArrowUpRight,
   Award,
@@ -314,40 +315,45 @@ function About({ data }) {
 }
 
 function Skills({ data }) {
-  const allSkills = data.skills.flatMap(group => group.items);
-  const half = Math.ceil(allSkills.length / 2);
-  const row1 = allSkills.slice(0, half);
-  const row2 = allSkills.slice(half);
+  const [openIndex, setOpenIndex] = useState(0);
 
   return (
     <section id="skills" className="section tinted">
       <SectionHeader section={data.sections.skills} />
-      <div className="marquee-container">
-        <div className="marquee-row marquee-left">
-          <div className="marquee-content">
-            {[...row1, ...row1, ...row1, ...row1].map((skill, i) => (
-              <div className="marquee-item" key={`r1-${skill}-${i}`}>
-                <div className="marquee-icon">
-                  {getSkillIcon(skill)}
-                </div>
-                <span className="marquee-label">{skill}</span>
+      <div className="file-tree-container">
+        {data.skills.map((group, index) => {
+          const isOpen = openIndex === index;
+          return (
+            <div className="file-tree-group" key={group.category}>
+              <div 
+                className="file-tree-header" 
+                onClick={() => setOpenIndex(isOpen ? -1 : index)}
+              >
+                <div className={`chevron ${isOpen ? 'open' : ''}`}>›</div>
+                <FolderClosed size={16} color="var(--teal)" />
+                <h3>{group.category}</h3>
               </div>
-            ))}
-          </div>
-        </div>
-        
-        <div className="marquee-row marquee-right" style={{ marginTop: '30px' }}>
-          <div className="marquee-content">
-            {[...row2, ...row2, ...row2, ...row2].map((skill, i) => (
-              <div className="marquee-item" key={`r2-${skill}-${i}`}>
-                <div className="marquee-icon">
-                  {getSkillIcon(skill)}
+              
+              <div className="file-tree-body-wrapper" style={{ display: 'grid', gridTemplateRows: isOpen ? '1fr' : '0fr', transition: 'grid-template-rows 0.3s ease-out' }}>
+                <div className="file-tree-body-content" style={{ overflow: 'hidden' }}>
+                  <div className="file-tree-body">
+                    {group.items.map((skill) => {
+                      const Icon = getSkillIcon(skill);
+                      return (
+                        <div className="file-tree-item" key={skill}>
+                          <div className="file-tree-icon-wrapper">
+                            {Icon}
+                          </div>
+                          <span className="file-tree-label">{skill}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-                <span className="marquee-label">{skill}</span>
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
