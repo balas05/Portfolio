@@ -47,6 +47,7 @@ function Header({ data, theme, onToggleTheme }) {
         {data.navigation.map((item) => (
           <a key={item.href} href={item.href}>
             {item.label}
+            
           </a>
         ))}
       </nav>
@@ -108,12 +109,19 @@ function MosaicPortrait({ data }) {
 }
 
 function Hero({ data }) {
+  const featuredSkills = data.skills.flatMap((group) => group.items).slice(0, 5);
+
   return (
     <section className="hero" id="top">
       <div className="hero-copy">
         <p className="eyebrow">{data.personal.role}</p>
         <MosaicName name={data.personal.name} />
         <p className="tagline">{data.personal.tagline}</p>
+        <div className="hero-skill-strip" aria-label="Featured skills">
+          {featuredSkills.map((skill) => (
+            <span key={skill}>{skill}</span>
+          ))}
+        </div>
         <div className="hero-actions">
           <a className="button primary" href="#projects">
             <Sparkles size={18} />
@@ -156,13 +164,16 @@ function Skills({ data }) {
       <div className="skill-grid">
         {data.skills.map((group) => (
           <article className="skill-card" key={group.category}>
-            <h3>{group.category}</h3>
-            <div>
-              {group.items.map((skill) => (
-                <span key={skill}>{skill}</span>
-              ))}
-            </div>
-          </article>
+  <h3>{group.category}</h3>
+
+  <div className="skill-pills">
+    {group.items.map((skill) => (
+      <span className="skill-pill" key={skill}>
+        {skill}
+      </span>
+    ))}
+  </div>
+</article>
         ))}
       </div>
     </section>
@@ -274,7 +285,6 @@ function EducationAndCertifications({ data }) {
 function Contact({ data }) {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", need: "", goals: "" });
   const [formStatus, setFormStatus] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const form = data.contact.form;
 
   const updateForm = (field, value) => {
@@ -282,51 +292,20 @@ function Contact({ data }) {
     setFormStatus("");
   };
 
-  const submitForm = async (event) => {
+  const submitForm = (event) => {
     event.preventDefault();
-    setIsSubmitting(true);
-    setFormStatus("Sending...");
-
-    const accessKey = form.web3FormsKey;
-
-    if (!accessKey) {
-        setFormStatus("Configuration Error: Web3Forms Access Key is missing.");
-        setIsSubmitting(false);
-        return;
-    }
-
-    const payload = {
-        access_key: accessKey,
-        subject: `${form.subjectPrefix} ${formData.name}`,
-        from_name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        need: formData.need,
-        message: formData.goals,
-    };
-
-    try {
-        const response = await fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-            },
-            body: JSON.stringify(payload),
-        });
-        const result = await response.json();
-        
-        if (result.success) {
-            setFormStatus(form.successMessage || "Message sent successfully!");
-            setFormData({ name: "", email: "", phone: "", need: "", goals: "" });
-        } else {
-            setFormStatus(result.message || "Something went wrong.");
-        }
-    } catch (error) {
-        setFormStatus("Failed to send message. Please try again later.");
-    }
-    
-    setIsSubmitting(false);
+    const subject = `${form.subjectPrefix} ${formData.name}`;
+    const body = [
+      `${form.nameLabel}: ${formData.name}`,
+      `${form.emailLabel}: ${formData.email}`,
+      `${form.phoneLabel}: ${formData.phone}`,
+      `${form.needLabel}: ${formData.need}`,
+      `${form.goalsLabel}:`,
+      formData.goals,
+    ].join("\n\n");
+    const recipientEmail = form.recipientEmail || data.contact.email;
+    window.location.href = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setFormStatus(form.successMessage);
   };
 
   return (
@@ -395,9 +374,9 @@ function Contact({ data }) {
               onChange={(event) => updateForm("goals", event.target.value)}
             />
           </label>
-          <button className="button primary" type="submit" disabled={isSubmitting}>
+          <button className="button primary" type="submit">
             <Mail size={18} />
-            {isSubmitting ? "Sending..." : form.submitLabel}
+            {form.submitLabel}
           </button>
           {formStatus ? <p className="contact-form-status">{formStatus}</p> : null}
         </form>
