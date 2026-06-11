@@ -36,7 +36,7 @@
     "name": "Bala S",
     "role": "Full Stack Developer",
     "tagline": "I build polished web products with clean architecture, thoughtful UX, and reliable delivery.",
-    "about": "I am a product-minded developer focused on building fast, accessible, and maintainable applications. I enjoy turning ambiguous ideas into well-structured interfaces, scalable frontend systems, and practical admin workflows that teams can actually use.",
+    "about": "Curiosity drives me, technology enables me, and problem-solving defines me. I enjoy building intelligent systems that bridge the gap between data and decisions. Whether it's training machine learning models, developing scalable web applications, or designing AI-powered platforms, I thrive on creating solutions that are both innovative and useful.\n",
     "location": "TamilNadu,India",
     "availability": "Available for freelance and full-time roles",
     "avatarUrl": "https://media.licdn.com/dms/image/v2/D5635AQHS3PumDqpaEg/profile-framedphoto-shrink_400_400/B56Z6r.Y3oJwAY-/0/1781001719858?e=1781607600&v=beta&t=TwPCtrsie2rCzVOgDEDzhZmJjt95oDERHzhh67tsj8M",
@@ -173,8 +173,7 @@
         "Key Highlights",
         "✅ Reduces manual review time significantly.",
         "✅ Improves accuracy in identifying sensitive content.",
-        "✅ Scalable for processing large volumes of movies and videos.",
-        "✅ Assists censor boards rather than replacing human reviewers."
+        "✅ Provides precise timestamps for faster inspection."
       ]
     }
   ],
@@ -228,7 +227,6 @@
     "message": "Send a note with a little context about the work, timeline, and goals.",
     "form": {
       "title": "Start a Conversation",
-      "web3FormsKey": "",
       "recipientEmail": "balasaravanapriya2004@gmail.com",
       "nameLabel": "Your Name",
       "emailLabel": "Your Email",
@@ -237,7 +235,8 @@
       "goalsLabel": "What are your goals?",
       "submitLabel": "Send Email",
       "subjectPrefix": "Portfolio inquiry from",
-      "successMessage": "Your email app is ready with the message."
+      "successMessage": "Your email app is ready with the message.",
+      "web3FormsKey": "27522452-72f5-42b9-bcce-d7b5f4430527"
     }
   }
 }
