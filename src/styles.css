@@ -1738,4 +1738,42 @@ a,
   justify-content: center;
   grid-column: 1 / -1;
   width: 100%;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Project Tech Icons */
+.project-tech-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+  margin-bottom: 20px;
+}
+
+.project-tech-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: color-mix(in srgb, var(--paper) 70%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  cursor: help;
+}
+
+.project-tech-icon:hover {
+  background: var(--surface);
+  border-color: var(--teal);
+  transform: translateY(-2px) scale(1.1);
+  box-shadow: 0 4px 12px rgba(29, 111, 115, 0.15);
+}
+
+.project-tech-icon .skill-logo,
+.project-tech-icon .skill-icon-fallback {
+  width: 20px !important;
+  height: 20px !important;
 }

@@ -37,7 +37,7 @@ const getSkillIcon = (skillName) => {
     "sql": "sqlite",
   };
   
-  if (map[key] === "brain" || key.includes("machine") || key.includes("ai") || key.includes("nlp")) return <BrainCircuit size={24} className="skill-icon-fallback" />;
+  if (map[key] === "brain" || key.includes("machine") || key.includes("ai") || key.includes("nlp") || key.includes("llm") || key === "ml") return <BrainCircuit size={24} className="skill-icon-fallback" />;
   if (map[key] === "sparkles") return <Sparkles size={24} className="skill-icon-fallback" />;
   if (map[key] === "code" || key.includes("code")) return <Terminal size={24} className="skill-icon-fallback" />;
   if (map[key] === "message") return <Send size={24} className="skill-icon-fallback" />;
@@ -334,16 +334,32 @@ function Skills({ data }) {
       <SectionHeader section={data.sections.skills} />
       <div className="bento-skill-grid">
         <article className="bento-skill-card radar-card">
-          <div className="bento-card-header">
-            <h3>Technical Distribution</h3>
+          <div className="bento-card-header" style={{ borderBottom: 'none', textAlign: 'center' }}>
+            <h3 style={{ color: 'var(--muted)', fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '2px' }}>Technical Distribution</h3>
           </div>
-          <div style={{ width: '100%', height: 350, marginTop: '-20px' }}>
+          <div style={{ width: '100%', height: 350, marginTop: '-10px' }}>
             <ResponsiveContainer width="100%" height="100%">
-              <RadarChart cx="50%" cy="50%" outerRadius="75%" data={radarData}>
-                <PolarGrid stroke="var(--line)" />
-                <PolarAngleAxis dataKey="subject" tick={{ fill: 'var(--charcoal)', fontSize: 12, fontWeight: 600 }} />
+              <RadarChart cx="50%" cy="50%" outerRadius="70%" data={radarData}>
+                <defs>
+                  <linearGradient id="colorRadar" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="var(--teal)" stopOpacity={0.6}/>
+                    <stop offset="95%" stopColor="var(--teal)" stopOpacity={0.05}/>
+                  </linearGradient>
+                </defs>
+                <PolarGrid stroke="var(--line)" gridType="circle" strokeDasharray="4 4" />
+                <PolarAngleAxis dataKey="subject" tick={{ fill: 'var(--ink)', fontSize: 13, fontWeight: 600 }} />
                 <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
-                <Radar name="Skills" dataKey="A" stroke="var(--teal)" fill="var(--teal)" fillOpacity={0.4} />
+                <Radar 
+                  name="Skills" 
+                  dataKey="A" 
+                  stroke="var(--teal)" 
+                  strokeWidth={2}
+                  fill="url(#colorRadar)" 
+                  fillOpacity={1} 
+                  dot={{ r: 3, fill: "var(--teal)", stroke: "var(--surface)", strokeWidth: 1 }}
+                  activeDot={{ r: 6, fill: "var(--teal)", stroke: "var(--surface)", strokeWidth: 2 }}
+                  animationDuration={2000}
+                />
               </RadarChart>
             </ResponsiveContainer>
           </div>
@@ -382,9 +398,11 @@ function Projects({ data }) {
                 <h3>{project.title}</h3>
                 <span>{project.description}</span>
               </div>
-              <div className="tags">
+              <div className="project-tech-icons">
                 {project.tags.map((tag) => (
-                  <span key={tag}>{tag}</span>
+                  <div className="project-tech-icon" key={tag} title={tag}>
+                    {getSkillIcon(tag)}
+                  </div>
                 ))}
               </div>
               <div className="project-links">
