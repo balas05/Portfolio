@@ -348,6 +348,8 @@ a,
 }
 
 .hero-skill-strip span {
+  display: inline-block;
+  white-space: nowrap;
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 8px 12px;
@@ -357,6 +359,7 @@ a,
   font-size: 0.78rem;
   font-weight: 800;
   backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .hero-actions {
@@ -680,7 +683,7 @@ a,
   color: var(--charcoal);
 }
 
-.skill-card div,
+.skill-pills,
 .tags {
   display: flex;
   flex-wrap: wrap;
@@ -697,7 +700,9 @@ a,
   font-weight: 700;
 }
 
-.skill-card span {
+.skill-pill {
+  display: inline-block;
+  white-space: nowrap;
   border-radius: 999px;
   padding: 8px 14px;
   background: #1e3a8a; /* A rich darker blue */
