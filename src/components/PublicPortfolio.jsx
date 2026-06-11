@@ -15,7 +15,35 @@ import {
   Sparkles,
   Sun,
   Twitter,
+  Terminal,
+  BrainCircuit,
+  Database,
+  Box,
 } from "lucide-react";
+
+const getSkillIcon = (skillName) => {
+  const key = skillName.toLowerCase();
+  const map = {
+    "c++": "cplusplus",
+    "html": "html5",
+    "css": "css3",
+    "vscode": "visualstudiocode",
+    "googlecolab": "googlecolab",
+    "machinelearning": "brain",
+    "nlp": "message",
+    "genai": "sparkles",
+    "codex": "code",
+    "sql": "sqlite",
+  };
+  
+  if (map[key] === "brain" || key.includes("machine") || key.includes("ai") || key.includes("nlp")) return <BrainCircuit size={24} className="skill-icon-fallback" />;
+  if (map[key] === "sparkles") return <Sparkles size={24} className="skill-icon-fallback" />;
+  if (map[key] === "code" || key.includes("code")) return <Terminal size={24} className="skill-icon-fallback" />;
+  if (map[key] === "message") return <Send size={24} className="skill-icon-fallback" />;
+  
+  const iconId = map[key] || key;
+  return <img src={`https://cdn.simpleicons.org/${iconId}`} alt={skillName} className="skill-logo" loading="lazy" onError={(e) => e.target.style.display = 'none'} />;
+};
 
 const socialIcons = {
   github: Github,
@@ -161,19 +189,21 @@ function Skills({ data }) {
   return (
     <section id="skills" className="section tinted">
       <SectionHeader section={data.sections.skills} />
-      <div className="skill-grid">
+      <div className="bento-skill-grid">
         {data.skills.map((group) => (
-          <article className="skill-card" key={group.category}>
-  <h3>{group.category}</h3>
-
-  <div className="skill-pills">
-    {group.items.map((skill) => (
-      <span className="skill-pill" key={skill}>
-        {skill}
-      </span>
-    ))}
-  </div>
-</article>
+          <article className="bento-skill-card" key={group.category}>
+            <div className="bento-card-header">
+              <h3>{group.category}</h3>
+            </div>
+            <div className="bento-skill-items">
+              {group.items.map((skill) => (
+                <div className="iconic-skill-pill" key={skill}>
+                  {getSkillIcon(skill)}
+                  <span>{skill}</span>
+                </div>
+              ))}
+            </div>
+          </article>
         ))}
       </div>
     </section>
