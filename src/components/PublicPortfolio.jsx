@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from "recharts";
 import {
   ArrowUpRight,
   Award,
@@ -287,7 +288,21 @@ function About({ data }) {
     <section id="about" className="section">
       <SectionHeader section={data.sections.about} />
       <div className="about-grid">
-        <p className="about-copy">{data.personal.about}</p>
+        <div className="about-terminal">
+          <div className="terminal-header">
+            <div className="terminal-dots">
+              <span className="dot red"></span>
+              <span className="dot yellow"></span>
+              <span className="dot green"></span>
+            </div>
+            <span className="terminal-title">guest@bala-portfolio: ~</span>
+          </div>
+          <div className="terminal-body">
+            <p className="command"><span className="prompt">$</span> cat about_bala.txt</p>
+            <p className="output">{data.personal.about}</p>
+            <p className="command"><span className="prompt">$</span> <span className="typewriter-cursor">|</span></p>
+          </div>
+        </div>
         <div className="about-sidebar">
           <div className="stats-grid">
             {data.stats.map((stat) => (
@@ -305,10 +320,34 @@ function About({ data }) {
 }
 
 function Skills({ data }) {
+  const radarData = [
+    { subject: 'AI / ML', A: 95, fullMark: 100 },
+    { subject: 'Frontend', A: 85, fullMark: 100 },
+    { subject: 'Backend', A: 80, fullMark: 100 },
+    { subject: 'DSA', A: 90, fullMark: 100 },
+    { subject: 'Databases', A: 85, fullMark: 100 },
+    { subject: 'Cloud', A: 75, fullMark: 100 },
+  ];
+
   return (
     <section id="skills" className="section tinted">
       <SectionHeader section={data.sections.skills} />
       <div className="bento-skill-grid">
+        <article className="bento-skill-card radar-card">
+          <div className="bento-card-header">
+            <h3>Technical Distribution</h3>
+          </div>
+          <div style={{ width: '100%', height: 280, marginTop: '-20px' }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <RadarChart cx="50%" cy="50%" outerRadius="65%" data={radarData}>
+                <PolarGrid stroke="var(--line)" />
+                <PolarAngleAxis dataKey="subject" tick={{ fill: 'var(--charcoal)', fontSize: 12, fontWeight: 600 }} />
+                <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
+                <Radar name="Skills" dataKey="A" stroke="var(--teal)" fill="var(--teal)" fillOpacity={0.4} />
+              </RadarChart>
+            </ResponsiveContainer>
+          </div>
+        </article>
         {data.skills.map((group) => (
           <article className="bento-skill-card" key={group.category}>
             <div className="bento-card-header">
